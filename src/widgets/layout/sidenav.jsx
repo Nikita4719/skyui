@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
   Button,
   Typography,
@@ -24,6 +25,8 @@ export function Sidenav() {
   const [openMaster, setOpenMaster] = useState(false);
   const [openSettings, setOpenSettings] = useState(false);
 
+  const navigate = useNavigate();
+  
   return (
     <aside className="fixed h-screen w-72 bg-white shadow-lg p-4 
                   overflow-y-auto overflow-x-hidden 
@@ -48,9 +51,9 @@ export function Sidenav() {
         )}
       </NavLink>
 
-     {/*Navbar */}
+      {/*Navbar */}
 
-        <Button
+      <Button
         variant="text"
         onClick={() => setOpenNavbar(!openNavbar)}
         className="flex items-center justify-between mb-2"
@@ -63,7 +66,7 @@ export function Sidenav() {
         <ChevronDownIcon className="w-4 h-4" />
       </Button>
 
-        <Collapse open={openNavbar}>
+      <Collapse open={openNavbar}>
 
         <NavLink to="/dashboard/navbar/navbar-top">
           <Button variant="text" className="flex justify-start pl-12 mb-1 normal-case" fullWidth>
@@ -83,12 +86,12 @@ export function Sidenav() {
           </Button>
         </NavLink>
 
-        </Collapse>
+      </Collapse>
 
 
-     {/* Solution */}
+      {/* Solution */}
 
-       <Button
+      <Button
         variant="text"
         onClick={() => setOpenSolution(!openSolution)}
         className="flex items-center justify-between mb-2"
@@ -101,7 +104,7 @@ export function Sidenav() {
         <ChevronDownIcon className="w-4 h-4" />
       </Button>
 
-        <Collapse open={openSolution}>
+      <Collapse open={openSolution}>
 
         <NavLink to="/dashboard/solution/solution-cat">
           <Button variant="text" className="flex justify-start pl-12 mb-1 normal-case" fullWidth>
@@ -121,7 +124,7 @@ export function Sidenav() {
           </Button>
         </NavLink>
 
-        </Collapse>
+      </Collapse>
 
       {/* CMS */}
       <Button
@@ -156,16 +159,6 @@ export function Sidenav() {
           </Button>
         </NavLink>
 
-        {/* <NavLink to="/dashboard/cms/solution">
-          <Button variant="text" className="flex justify-start pl-12 mb-1 normal-case" fullWidth>
-            Solution
-          </Button>
-        </NavLink> */}
-
-
-        {/* <Button variant="text" className="flex justify-start pl-10 mb-1 normal-case" fullWidth>
-          Contact Us
-        </Button> */}
 
         <NavLink to="/dashboard/cms/footer">
           <Button variant="text" className="flex justify-start pl-12 mb-1 normal-case" fullWidth>
@@ -205,9 +198,6 @@ export function Sidenav() {
           </Button>
         </NavLink>
 
-        <Button variant="text" className="flex justify-start pl-12 mb-1 normal-case" fullWidth>
-          Enquiry
-        </Button>
       </Collapse>
 
       {/* Master */}
@@ -262,12 +252,6 @@ export function Sidenav() {
           </Button>
         </NavLink>
 
-        {/* <NavLink to="/dashboard/master/management-section">
-          <Button variant="text" className="flex justify-start pl-12 mb-1 normal-case" fullWidth>
-            Management Section
-          </Button>
-        </NavLink> */}
-
         <NavLink to="/dashboard/master/supported-section">
           <Button variant="text" className="flex justify-start pl-12 mb-1 normal-case" fullWidth>
             Supported Content
@@ -294,13 +278,13 @@ export function Sidenav() {
 
         <NavLink to="/dashboard/master/contact-messages">
           <Button variant="text" className="flex justify-start pl-12 mb-1 normal-case" fullWidth>
-           Contact
+            Contact
           </Button>
         </NavLink>
 
         <NavLink to="/dashboard/master/contact-settings">
           <Button variant="text" className="flex justify-start pl-12 mb-1 normal-case" fullWidth>
-           Contact Settings
+            Contact Settings
           </Button>
         </NavLink>
 
@@ -321,11 +305,6 @@ export function Sidenav() {
       </Button>
 
       <Collapse open={openSettings}>
-        {/* <NavLink to="/auth/sign-in">
-          <Button variant="text" className="flex justify-start pl-12 mb-1 normal-case" fullWidth>
-            Login
-          </Button>
-        </NavLink> */}
 
         <Button
           variant="text"
@@ -333,7 +312,7 @@ export function Sidenav() {
           fullWidth
           onClick={() => {
             localStorage.removeItem("token");
-            window.location.href = "/auth/sign-in";
+            navigate("/auth/sign-in");
           }}
         >
           Logout

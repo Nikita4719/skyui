@@ -1,9 +1,9 @@
 import {
-    Card,
-    CardHeader,
-    CardBody,
-    Typography,
-    Button,
+  Card,
+  CardHeader,
+  CardBody,
+  Typography,
+  Button,
 } from "@material-tailwind/react";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -11,217 +11,190 @@ import axios from "axios";
 import BASE_URL from "../../../configs/api";
 
 export default function Footer() {
-    const navigate = useNavigate();
-    const [data, setData] = useState([]);
+  const navigate = useNavigate();
+  const [data, setData] = useState([]);
 
-    useEffect(() => {
-        const fetchFooter = async () => {
-            try {
-                const res = await axios.get(`${BASE_URL}/api/footer`);
-                console.log(res);
-                if (res.data) setData([res.data]); // wrap in array
-            } catch (err) {
-                console.error("Error fetching footer:", err);
-            }
-        };
-        fetchFooter();
-    }, []);
+  const fetchFooter = async () => {
+    try {
+      const res = await axios.get(`${BASE_URL}/api/footer`);
+      if (res.data) setData([res.data]);
+    } catch (err) {
+      console.error("Error fetching footer:", err);
+    }
+  };
 
-    const handleDelete = async () => {
-        if (!window.confirm("Are you sure you want to delete the footer?")) return;
-        try {
-            await axios.delete(`${BASE_URL}/api/footer`);
-            alert("Footer deleted successfully!");
-            setData([]);
-        } catch (err) {
-            console.error("Error deleting footer:", err);
-        }
-    };
+  useEffect(() => {
+    fetchFooter();
+  }, []);
 
-    const handleLinkChange = (footerId, index, newLink) => {
-        const updatedData = data.map((item) => {
-            if (item.id === footerId) {
-                const newLinks = [...item.links];
-                newLinks[index].link = newLink;
-                return { ...item, links: newLinks };
-            }
-            return item;
-        });
-        setData(updatedData);
-    };
+  const handleDelete = async (id) => {
+    if (!window.confirm("Are you sure you want to delete?")) return;
 
+    try {
+      await axios.delete(`${BASE_URL}/api/footer/${id}`);
+      setData([]);
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
-    return (
-        <div className="mt-12 mb-8 flex flex-col gap-12 px-6">
-            <Card>
-                <CardHeader
-                    variant="gradient"
-                    color="gray"
-                    className="mb-8 p-6 flex justify-between items-center"
-                >
-                    <Typography variant="h6" color="white">
-                        Footer Section
-                    </Typography>
-                    <Button
-                        color="white"
-                        size="sm"
-                        onClick={() => navigate("/dashboard/cms/footer/add")}
-                    >
-                        Add
-                    </Button>
-                </CardHeader>
+  return (
+    <div className="mt-12 mb-8 px-6">
+      <Card>
+        <CardHeader
+          variant="gradient"
+          color="gray"
+          className="flex justify-between items-center p-6"
+        >
+          <Typography variant="h6" color="white">
+            Footer Section
+          </Typography>
 
-                <CardBody className="overflow-x-auto">
-                    <table className="w-full min-w-[1300px] table-auto">
-                        <thead>
-                            <tr>
-                                {[
-                                    "Logo",
-                                    "Title",
-                                    "Content",
-                                    "Email",
-                                    "Phone",
-                                    "Address",
-                                    "QR Code 1",
-                                    "QR Code 2",
-                                    "QR Code 3",
-                                    "QR Code 4",
-                                    "Links",
-                                    "Action",
-                                ].map((head) => (
-                                    <th key={head} className="border-b py-3 px-5 text-left">
-                                        <Typography
-                                            variant="small"
-                                            className="text-[11px] font-bold uppercase text-blue-gray-400"
-                                        >
-                                            {head}
-                                        </Typography>
-                                    </th>
-                                ))}
-                            </tr>
-                        </thead>
+          <Button
+            size="sm"
+            color="white"
+            onClick={() => navigate("/dashboard/cms/footer/add")}
+          >
+            Add
+          </Button>
+        </CardHeader>
 
-                        <tbody>
-                            {data.map((item) => {
-                                const qrCodes =
-                                    item.qr_code && item.qr_code !== "null"
-                                        ? JSON.parse(item.qr_code)
-                                        : [];
+        <CardBody className="overflow-x-auto">
+          <table className="w-full border border-blue-gray-200 table-auto">
+            <thead className="bg-blue-gray-50">
+              <tr>
+                {[
+                  "Logo", 
+                  "Title",
+                  "Content",
+                  "Email",
+                  "Phone",
+                  "Address",
+                  "QR 1",
+                  "QR 2",
+                  "QR 3",
+                  "QR 4",
+                  "Action",
+                ].map((head) => (
+                  <th
+                    key={head}
+                    className="border border-blue-gray-200 px-4 py-3 text-left text-xs font-bold uppercase text-blue-gray-600"
+                  >
+                    {head}
+                  </th>
+                ))}
+              </tr>
+            </thead>
 
-                                return (
-                                    <tr key={item.id}>
-                                        
-                                            <td className="py-3 px-5 border-b">
-                                                {item.logo ? (
-                                                    <img
-                                                        src={`${BASE_URL}/uploads/qrcodes/${item.logo}`}
-                                                        alt="logo"
-                                                        className="h-12 w-12 object-contain rounded"
-                                                    />
-                                                ) : (
-                                                    "-"
-                                                )}
-                                            </td>
-                                            {/* {item.logo} */}
-                                        
-                                        {/* Title */}
-                                        <td className="py-3 px-5 border-b">
-                                            {item.title || "-"}
-                                        </td>
+            <tbody>
+              {data.map((item) => {
+                const qrCodes =
+                  item.qr_code && item.qr_code !== "null"
+                    ? JSON.parse(item.qr_code)
+                    : [];
 
-                                        {/* Content */}
-                                        <td className="py-3 px-5 border-b">
-                                            {item.content || "-"}
-                                        </td>
+                return (
+                  <tr key={item.id} className="hover:bg-blue-gray-50">
 
-                                        {/* Email */}
-                                        <td className="py-3 px-5 border-b">
-                                            {item.contact_email || "-"}
-                                        </td>
+                    {/* ✅ LOGO */}
+                    <td className="border border-blue-gray-200 px-4 py-3 text-center">
+                      {item.logo ? (
+                        <img
+                         src={`${BASE_URL}/uploads/qrcodes/${item.logo}`}
+                          className="h-20 w-25 object-cover mx-auto"
+                          alt="logo"
+                        />
+                      ) : (
+                        "-"
+                      )}
+                    </td>
 
-                                        {/* Phone */}
-                                        <td className="py-3 px-5 border-b">
-                                            {item.contact_phone || "-"}
-                                        </td>
+                    {/* Title */}
+                    <td className="border border-blue-gray-200 px-4 py-3">
+                      <div
+                        dangerouslySetInnerHTML={{
+                          __html: item.title || "-",
+                        }}
+                      />
+                    </td>
 
-                                        {/* Address */}
-                                        <td className="py-3 px-5 border-b">
-                                            {item.address || "-"}
-                                        </td>
+                    {/* Content */}
+                    <td className="border border-blue-gray-200 px-4 py-3 max-w-[250px]">
+                      <div
+                        className="line-clamp-2"
+                        dangerouslySetInnerHTML={{
+                          __html: item.content || "-",
+                        }}
+                      />
+                    </td>
 
-                                        {/* QR Codes */}
-                                        {[0, 1, 2, 3].map((i) => (
-                                            <td key={i} className="py-3 px-5 border-b">
-                                                {qrCodes[i] ? (
-                                                    <img
-                                                        // src={
-                                                        //     qrCodes[i].startsWith("http")
-                                                        //         ? qrCodes[i]
-                                                        //         : `http://localhost:5000/uploads/qrcodes/${qrCodes[i]}`
-                                                        // }
-                                                        src={
-                                                            qrCodes[i].startsWith("http")
-                                                                ? qrCodes[i]
-                                                                : `${BASE_URL}/uploads/qrcodes/${qrCodes[i]}`
-                                                        }
-                                                        alt={`QR ${i + 1}`}
-                                                        className="h-12 w-12 object-cover rounded-lg"
-                                                    />
-                                                ) : (
-                                                    "-"
-                                                )}
-                                            </td>
-                                        ))}
+                    {/* Email */}
+                    <td className="border border-blue-gray-200 px-4 py-3">
+                      {item.contact_email || "-"}
+                    </td>
 
-                                        {/* Links Column */}
-                                        <td className="py-3 px-5 border-b">
-                                            {item.links && item.links.length > 0 ? (
-                                                <ul className="text-[11px]">
-                                                    {item.links.map((linkObj, index) => (
-                                                        <li key={index}>
-                                                            <input
-                                                                type="text"
-                                                                value={linkObj.link}
-                                                                onChange={(e) => handleLinkChange(item.id, index, e.target.value)}
-                                                                className="w-full border px-1 rounded text-[11px]"
-                                                            />
-                                                        </li>
-                                                    ))}
-                                                </ul>
-                                            ) : (
-                                                "-"
-                                            )}
-                                        </td>
+                    {/* Phone */}
+                    <td className="border border-blue-gray-200 px-4 py-3">
+                      {item.contact_phone || "-"}
+                    </td>
 
+                    {/* Address */}
+                    <td className="border border-blue-gray-200 px-4 py-3 max-w-[200px]">
+                      <div
+                        className="line-clamp-2"
+                        dangerouslySetInnerHTML={{
+                          __html: item.address || "-",
+                        }}
+                      />
+                    </td>
 
-                                        {/* Action */}
-                                        <td className="py-3 px-5 border-b flex gap-2">
-                                            <Button
-                                                size="sm"
-                                                variant="outlined"
-                                                onClick={() =>
-                                                    navigate(`/dashboard/cms/footer/edit/${item.id}`)
-                                                }
-                                            >
-                                                Edit
-                                            </Button>
+                    {/* QR Codes */}
+                    {[0, 1, 2, 3].map((i) => (
+                      <td
+                        key={i}
+                        className="border border-blue-gray-200 px-4 py-3 text-center"
+                      >
+                        {qrCodes[i] ? (
+                          <img
+                            src={`${BASE_URL}/uploads/qrcodes/${qrCodes[i]}`}
+                            className="h-14 w-14 object-cover mx-auto"
+                            alt="qr"
+                          />
+                        ) : (
+                          "-"
+                        )}
+                      </td>
+                    ))}
 
-                                            <Button
-                                                size="sm"
-                                                color="red"
-                                                onClick={() => handleDelete()}
-                                            >
-                                                Delete
-                                            </Button>
-                                        </td>
+                    {/* Action */}
+                    <td className="border border-blue-gray-200 px-4 py-3">
+                      <div className="flex gap-2">
+                        <Button
+                          size="sm"
+                           variant="outlined"
+                          onClick={() =>
+                            navigate(`/dashboard/cms/footer/edit/${item.id}`)
+                          }
+                        >
+                          Edit
+                        </Button>
 
-                                    </tr>
-                                );
-                            })}
-                        </tbody>
-                    </table>
-                </CardBody>
-            </Card>
-        </div>
-    );
+                        <Button
+                          size="sm"
+                          color="red"
+                          onClick={() => handleDelete(item.id)}
+                        >
+                          Delete
+                        </Button>
+                      </div>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </CardBody>
+      </Card>
+    </div>
+  );
 }

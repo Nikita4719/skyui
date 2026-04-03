@@ -57,30 +57,54 @@ export default function ContactSettings() {
           <table className="w-full border border-blue-gray-200">
             <thead className="bg-blue-gray-50">
               <tr>
-                <th className="border px-4 py-3">Map URL</th>
-                <th className="border px-4 py-3">BG Image</th>
-                <th className="border px-4 py-3">Action</th>
+                <th className="border border-blue-gray-200 px-4 py-3">Map URL</th>
+                <th className="border border-blue-gray-200 px-4 py-3">BG Image</th>
+                <th className="border border-blue-gray-200 px-4 py-3">Action</th>
               </tr>
             </thead>
             <tbody>
               {settings.id && (
                 <tr>
-                  <td className="border px-4 py-3 max-w-[250px]">
+                  <td className="border border-blue-gray-200 px-4 py-3 max-w-[250px]">
                     <span className="block truncate" title={settings.map_url}>
                       {settings.map_url}
                     </span>
                   </td>
-                  <td className="border px-4 py-3 max-w-[250px] truncate">
+                  <td className="border border-blue-gray-200 px-4 py-3 max-w-[250px] truncate">
                     <img
                       src={`${BASE_URL}/uploads/${settings.bg_image}`}
                       width="120"
                       alt="BG"
                     />
                   </td>
-                  <td className="border px-4 py-3 flex gap-2">
+
+                   <td className=" px-10 py-10 flex gap-2">
+                      <Button
+                        size="sm"
+                        variant="outlined"
+                        onClick={() =>
+                          navigate(
+                            `/dashboard/master/contact-settings/edit/${settings.id}`
+                          )
+                        }
+                      >
+                        Edit
+                      </Button>
+
+                      <Button
+                        size="sm"
+                        color="red"
+                        onClick={() => handleDelete(msg.id)}
+                      >
+                        Delete
+                      </Button>
+
+                    </td>
+
+                  {/* <td className="border px-4 py-3 flex gap-2">
                     <Button
-                      size="sm"
-                      color="white"
+                       size="sm"
+                      variant="outlined"
                       onClick={() => navigate(`/dashboard/master/contact-settings/edit/${settings.id}`)}
                     >
                       Edit
@@ -91,7 +115,7 @@ export default function ContactSettings() {
                     >
                       Delete
                     </Button>
-                  </td>
+                  </td> */}
                 </tr>
               )}
             </tbody>
