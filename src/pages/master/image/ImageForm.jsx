@@ -5,8 +5,7 @@ import {
 } from "@material-tailwind/react";
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { CKEditor } from "@ckeditor/ckeditor5-react";
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import Editor from "@/pages/editor/editor";
 import axios from "axios";
 import BASE_URL from "../../../configs/api";
 
@@ -18,6 +17,7 @@ export default function ImageForm() {
     heading: "",
     paragraph: "",
     image: null,
+    bgimage: null,
   });
 
   const [preview, setPreview] = useState({});
@@ -33,14 +33,20 @@ export default function ImageForm() {
             setPreview({
               image: `${BASE_URL}/${res.data.image}`,
             });
+
+          if (res.data.bgimage)
+            setPreview((prev) => ({
+              ...prev,
+              bgimage: `${BASE_URL}/${res.data.bgimage}`,
+            }));
         });
     }
   }, [id]);
 
-  const handleEditorChange = (field, editor) => {
+  const handleEditorChange = (field, value) => {
     setFormData((prev) => ({
       ...prev,
-      [field]: editor.getData(),
+      [field]: value,
     }));
   };
 
@@ -87,21 +93,17 @@ export default function ImageForm() {
         <form onSubmit={handleSubmit} className="space-y-6">
 
           <Typography>Heading</Typography>
-          <CKEditor
-            editor={ClassicEditor}
-            data={formData.heading || ""}
-            onChange={(e, editor) =>
-              handleEditorChange("heading", editor)
-            }
+          <Editor
+            value={formData.heading}
+            onChange={(val) => handleEditorChange("heading", val)}
+            height={300}
           />
 
           <Typography>Paragraph</Typography>
-          <CKEditor
-            editor={ClassicEditor}
-            data={formData.paragraph || ""}
-            onChange={(e, editor) =>
-              handleEditorChange("paragraph", editor)
-            }
+          <Editor
+            value={formData.paragraph}
+            onChange={(val) => handleEditorChange("paragraph", val)}
+            height={250}
           />
 
           <Typography>Image</Typography>
@@ -112,6 +114,17 @@ export default function ImageForm() {
           />
           {preview.image && (
             <img src={preview.image} className="h-20 mt-2" />
+          )}
+
+          <Typography>Background Image</Typography>
+          <input
+            type="file"
+            name="bgimage"
+            onChange={handleImageChange}
+          />
+
+          {preview.bgimage && (
+            <img src={preview.bgimage} className="h-20 mt-2" />
           )}
 
           <Button type="submit" fullWidth>

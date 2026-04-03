@@ -3,11 +3,14 @@ import {
   DocumentTextIcon,
   Cog6ToothIcon,
   UserCircleIcon,
-  ArrowRightOnRectangleIcon,
 } from "@heroicons/react/24/solid";
 
 import { Home } from "@/pages/dashboard";
-import { SignIn, SignUp } from "@/pages/auth";
+
+//SIGN IN
+import { SignIn } from "@/pages/auth";
+import ForgotPassword from "./pages/auth/ForgotPassword";
+import ResetPassword from "./pages/auth/ResetPassword";
 
 //NAVABR
 import HeaderTop from "./pages/navbar/header_top/HeaderTopTable";
@@ -52,7 +55,6 @@ import WhatSection from "./pages/master/wh_section/WhatSection";
 import WhatSectionForm from "./pages/master/wh_section/WhatSectionForm";
 import Image from "./pages/master/image/Image";
 import ImageForm from "./pages/master/image/ImageForm";
-// import EmbeddedSection from "./pages/master/embedded_section/Services";
 
 import ServicesCategory from "./pages/master/services_category/ServicesCategory";
 import ServicesCategoryForm from "./pages/master/services_category/ServicesCategoryForm";
@@ -66,7 +68,6 @@ import OfferSection from "./pages/master/offer_section/OfferSection";
 import OfferSectionForm from "./pages/master/offer_section/OfferSectionForm";
 import EverywhereSlide from "./pages/master/everywhere_slide/EverywhereSlide";
 import EverywhereSlideForm from "./pages/master/everywhere_slide/EverywhereSlideForm";
-// import SolutionForm from "./pages/cms/solution/SolutionForm";
 import AIPowered from "./pages/cms/ai_powered/AIPowered";
 import AIPoweredForm from "./pages/cms/ai_powered/AIPoweredForm";
 import Faqs from "./pages/master/faqs/Faqs";
@@ -74,7 +75,6 @@ import FaqsForm from "./pages/master/faqs/FaqsForm";
 import AboutUsBenefits from "./pages/cms/about_us_benefits/AboutUsBenefits";
 import AboutUsBenefitsForm from "./pages/cms/about_us_benefits/AboutUsBenefitsForm";
 import ContactMessages from "./pages/master/contact_messages/ContactMessages";
-import ContactMessageForm from "./pages/master/contact_messages/ContactMessagesForm";
 import ContactSettings from "./pages/master/contact_settings/ContactSettings";
 import ContactSettingsForm from "./pages/master/contact_settings/ContactSettingsForm"
 import Services from "./pages/master/services/Services";
@@ -526,14 +526,14 @@ export const routes = [
         path: "/master/contact-messages",
         element: <ContactMessages />,
       },
-      {
-        path: "/master/contact-messages/add",
-        element: <ContactMessageForm />,
-      },
-      {
-        path: "/master/contact-messages/edit/:id",
-        element: <ContactMessageForm />,
-      },
+      // {
+      //   path: "/master/contact-messages/add",
+      //   element: <ContactMessageForm />,
+      // },
+      // {
+      //   path: "/master/contact-messages/edit/:id",
+      //   element: <ContactMessageForm />,
+      // },
       // CONTACT SETTINGS
       {
         name: "contact-settings",
@@ -563,11 +563,24 @@ export const routes = [
         element: <SignIn />,
       },
       {
-        icon: <ArrowRightOnRectangleIcon {...icon} />,
-        name: "sign up",
-        path: "/sign-up",
-        element: <SignUp />,
+        icon: <UserCircleIcon {...icon} />,
+        name: "sign in",
+        path: "/forgot-password",
+        element:<ForgotPassword />,
       },
+      {
+        icon: <UserCircleIcon {...icon} />,
+        name: "sign in",
+        path: "/reset-password/:token",
+        element: <ResetPassword />,
+      },
+
+      // {
+      //   icon: <ArrowRightOnRectangleIcon {...icon} />,
+      //   name: "sign up",
+      //   path: "/sign-up",
+      //   element: <SignUp />,
+      // },
     ],
   },
 ];
