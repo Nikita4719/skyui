@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import BASE_URL from "../../../configs/api";
-import Editor from "@/pages/editor/editor";
+import Editor from "@/pages/editor/Editor";
 
 export default function SolutionCatForm() {
   const navigate = useNavigate();
@@ -55,17 +55,9 @@ export default function SolutionCatForm() {
 
     try {
       if (id) {
-        await axios.put(
-          `${BASE_URL}/api/solution-cat/${id}`,
-          formData,
-          { headers: { "Content-Type": "multipart/form-data" } }
-        );
+        await axios.put(`${BASE_URL}/api/solution-cat/${id}`, formData);
       } else {
-        await axios.post(
-          `${BASE_URL}/api/solution-cat`,
-          formData,
-          { headers: { "Content-Type": "multipart/form-data" } }
-        );
+        await axios.post(`${BASE_URL}/api/solution-cat`, formData);
       }
 
       navigate("/dashboard/solution/solution-cat");

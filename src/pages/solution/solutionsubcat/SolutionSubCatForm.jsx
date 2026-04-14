@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import BASE_URL from "../../../configs/api";
-import Editor from "@/pages/editor/editor";
+import Editor from "@/pages/editor/Editor";
 
 export default function SolutionSubCatForm() {
   const navigate = useNavigate();
@@ -173,9 +173,39 @@ export default function SolutionSubCatForm() {
           <Typography>Description 1</Typography>
           <Editor value={formData.description1} onChange={(val) => handleEditorChange("description1", val)} height={300} />
 
+
           <Typography>Description 2</Typography>
           <Editor value={formData.description2} onChange={(val) => handleEditorChange("description2", val)} height={300} />
 
+
+
+          <Typography>Para 1</Typography>
+          <Editor
+            value={formData.para1}
+            onChange={(val) => handleEditorChange("para1", val)}
+            height={300}
+          />
+
+          <Typography>Para 2</Typography>
+          <Editor
+            value={formData.para2}
+            onChange={(val) => handleEditorChange("para2", val)}
+            height={300}
+          />
+
+          <Typography>Para 3</Typography>
+          <Editor
+            value={formData.para3}
+            onChange={(val) => handleEditorChange("para3", val)}
+            height={300}
+          />
+
+          <Typography>Para 4</Typography>
+          <Editor
+            value={formData.para4}
+            onChange={(val) => handleEditorChange("para4", val)}
+            height={300}
+          />
           {/* IMAGE1 */}
           <Typography>Upload Image1</Typography>
           <input type="file" onChange={handleImage1} />

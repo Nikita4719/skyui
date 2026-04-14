@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import BASE_URL from "../../../configs/api";
-import Editor from "@/pages/editor/editor";
+import Editor from "@/pages/editor/Editor";
 
 export default function ServicesSubCatForm() {
 

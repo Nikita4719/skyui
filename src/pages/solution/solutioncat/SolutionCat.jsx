@@ -33,6 +33,11 @@ export default function SolutionCat() {
     fetchData();
   };
 
+  const stripHtml = (html) => {
+  const doc = new DOMParser().parseFromString(html, "text/html");
+  return doc.body.textContent || "";
+};
+
   return (
     <div className="mt-12 mb-8 px-6">
       <Card>
@@ -67,10 +72,18 @@ export default function SolutionCat() {
             </thead>
 
             <tbody>
+
+               {/* <td
+                    className="border border-blue-gray-200 p-3"
+                    dangerouslySetInnerHTML={{
+                      __html: item.service?.title || ""
+                    }}
+                  /> */}
+
               {data.map((item) => (
                 <tr key={item.id}>
                   <td className="border  border-blue-gray-200 px-3 py-2">
-                    {item.title}
+                    {stripHtml(item.title)}
                   </td>
 
                   <td className="border  border-blue-gray-200 px-3 py-2 text-center">

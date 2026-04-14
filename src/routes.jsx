@@ -28,6 +28,9 @@ import SolutionSubCat from "./pages/solution/solutionsubcat/SolutionSubCat";
 import SolutionSubCatForm from "./pages/solution/solutionsubcat/SolutionSubCatForm";
 import SolutionImage from "./pages/solution/solutionimage/SolutionImage";
 import SolutionImageForm from "./pages/solution/solutionimage/SolutionImageForm";
+import SolutionCard from "./pages/solution/solutioncard/SolutionCard";
+import SolutionCardForm from "./pages/solution/solutioncard/SolutionCardForm";
+
 
 //CMS ROUTES
 import AboutUs from "./pages/cms/about_us/AboutUs";
@@ -140,6 +143,22 @@ export const routes = [
         element: <NavbarMenuForm />,
       },
 
+
+      //SOLUTION CARD
+
+        {
+        name: "solution category",
+        path: "/solution/solution-card",
+        element: <SolutionCard />,
+      },
+      {
+        path: "/solution/solution-card/add",
+        element: <SolutionCardForm />,
+      },
+      {
+        path: "/solution/solution-card/edit/:id",
+        element: <SolutionCardForm />,
+      },
 
       //SOLUTION CAT
       {

@@ -1,6 +1,7 @@
 import {
   Card,
   CardBody,
+  CardHeader,
   Typography,
   Button,
 } from "@material-tailwind/react";
@@ -48,7 +49,7 @@ export default function SolutionSubCat() {
   const truncateText = (text, maxLength = 120) => {
     if (!text) return "";
 
-    const cleanText = stripHtml(text); // ✅ clean text first
+    const cleanText = stripHtml(text); 
 
     return cleanText.length > maxLength
       ? cleanText.substring(0, maxLength) + "..."
@@ -57,19 +58,25 @@ export default function SolutionSubCat() {
 
   return (
     <div className="mt-12 mb-8 px-6">
-      <div className="flex justify-between mb-6">
-        <Typography variant="h4">
-          Solution Sub Categories
-        </Typography>
-
-        <Button
-          onClick={() =>
-            navigate("/dashboard/solution/solution-sub-cat/add")
-          }
-        >
-          Add New
-        </Button>
-      </div>
+     <CardHeader
+              variant="gradient"
+              color="gray"
+              className="flex justify-between items-center p-6"
+            >
+              <Typography variant="h6" color="white">
+                Solution Sub Categories
+              </Typography>
+    
+              <Button
+                size="sm"
+                color="white"
+                onClick={() =>
+                  navigate("/dashboard/solution/solution-cat/add")
+                }
+              >
+                Add
+              </Button>
+            </CardHeader>
 
       <Card>
         <CardBody className="overflow-x-auto">
@@ -115,7 +122,7 @@ export default function SolutionSubCat() {
                     </td>
 
                     <td className="border border-blue-gray-200 p-3 font-semibold">
-                      {item.solution_cat?.title || "No Category"}
+                      {truncateText (item.solution_cat?.title || "No Category")}
                     </td>
 
                     <td className="border border-blue-gray-200 p-3">
