@@ -7,8 +7,7 @@ import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import BASE_URL from "../../../configs/api";
-import Editor from "@/pages/editor/Editor";
-
+import Editor from "../../pages/editor/Editor";
 export default function SolutionCatForm() {
   const navigate = useNavigate();
   const { id } = useParams();

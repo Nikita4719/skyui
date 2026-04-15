@@ -7,8 +7,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import BASE_URL from "../../../configs/api";
-import Editor from "@/pages/editor/Editor";
-
+import Editor from "../../pages/editor/Editor";
 export default function TestimonialForm() {
   const navigate = useNavigate();
   const { id } = useParams();

@@ -3,8 +3,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import BASE_URL from "../../../configs/api";
-import Editor from "@/pages/editor/Editor";
-
+import Editor from "../../pages/editor/Editor";
 export default function FooterForm() {
   const navigate = useNavigate();
   const [logo, setLogo] = useState(null);
