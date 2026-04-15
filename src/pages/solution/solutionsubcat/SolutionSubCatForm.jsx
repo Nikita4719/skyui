@@ -142,6 +142,10 @@ export default function SolutionSubCatForm() {
     }
   };
 
+   const stripHtml = (html) => {
+  const doc = new DOMParser().parseFromString(html, "text/html");
+  return doc.body.textContent || "";
+};
 
   return (
     <div className="mt-12 mb-8 px-6">
@@ -162,7 +166,7 @@ export default function SolutionSubCatForm() {
             <option value="">Select Category</option>
             {categories.map((cat) => (
               <option key={cat.id} value={cat.id}>
-                {cat.title}
+                {stripHtml(cat.title)}
               </option>
             ))}
           </select>

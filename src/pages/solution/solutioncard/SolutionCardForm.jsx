@@ -88,7 +88,7 @@ export default function SolutionCardForm() {
                     className="border p-2 w-full"
                     value={formData.solutionCatId}
                     onChange={(e) =>
-                        handle("solutionCatId", e.target.value)
+                        handle("solutionCatId", Number(e.target.value))
                     }
                 >
                     <option value="">Select Category</option>

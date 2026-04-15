@@ -71,7 +71,7 @@ export default function SolutionSubCat() {
                 size="sm"
                 color="white"
                 onClick={() =>
-                  navigate("/dashboard/solution/solution-cat/add")
+                  navigate("/dashboard/solution/solution-sub-cat/add")
                 }
               >
                 Add
