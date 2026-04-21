@@ -30,6 +30,8 @@ import SolutionImage from "./pages/solution/solutionimage/SolutionImage";
 import SolutionImageForm from "./pages/solution/solutionimage/SolutionImageForm";
 import SolutionCard from "./pages/solution/solutioncard/SolutionCard";
 import SolutionCardForm from "./pages/solution/solutioncard/SolutionCardForm";
+import SolutionCards from "./pages/solution/solutioncards/SolutionCards";
+import SolutionCardsForm from "./pages/solution/solutioncards/SolutionCardsForm";
 
 
 //CMS ROUTES
@@ -158,6 +160,22 @@ export const routes = [
       {
         path: "/solution/solution-card/edit/:id",
         element: <SolutionCardForm />,
+      },
+
+      //SOLUTION CARDS
+
+        {
+        name: "solution category",
+        path: "/solution/solution-cards",
+        element: <SolutionCards />,
+      },
+      {
+        path: "/solution/solution-cards/add",
+        element: <SolutionCardsForm />,
+      },
+      {
+        path: "/solution/solution-cards/edit/:id",
+        element: <SolutionCardsForm />,
       },
 
       //SOLUTION CAT

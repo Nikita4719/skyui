@@ -10,7 +10,7 @@ import BASE_URL from "../../../configs/api";
 import Editor from "@/pages/editor/Editor";
 
 
-export default function SolutionCardForm() {
+export default function SolutionCardsForm() {
     const { id } = useParams();
     const navigate = useNavigate();
 
@@ -45,7 +45,7 @@ export default function SolutionCardForm() {
 
 
         if (id) {
-            axios.get(`${BASE_URL}/api/solution-card/${id}`).then((res) => {
+            axios.get(`${BASE_URL}/api/solution-cards/${id}`).then((res) => {
                 setFormData(res.data);
                 setPreview(`${BASE_URL}/${res.data.svg}`);
             });
@@ -72,12 +72,12 @@ export default function SolutionCardForm() {
         });
 
         if (id) {
-            await axios.put(`${BASE_URL}/api/solution-card/${id}`, data);
+            await axios.put(`${BASE_URL}/api/solution-cards/${id}`, data);
         } else {
-            await axios.post(`${BASE_URL}/api/solution-card`, data);
+            await axios.post(`${BASE_URL}/api/solution-cards`, data);
         }
 
-        navigate("/dashboard/solution/solution-card");
+        navigate("/dashboard/solution/solution-cards");
     };
 
     return (
