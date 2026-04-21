@@ -5,8 +5,7 @@ import {
 } from "@material-tailwind/react";
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import Editor from "@/pages/editor/Editor";
-import axios from "axios";
+import Editor from "../../pages/editor/Editor"; import axios from "axios";
 import BASE_URL from "../../../configs/api";
 
 export default function ImageForm() {
