@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import BASE_URL from "../../../configs/api";
-import Editor from "../../pages/editor/Editor";
+import Editor from "@/pages/editor/Editor";
 
 export default function SolutionCardForm() {
     const { id } = useParams();
@@ -64,7 +64,7 @@ export default function SolutionCardForm() {
             data.append(key, value || "");
         });
 
-    
+
 
         Object.entries(svg).forEach(([key, file]) => {
             if (file) data.append(key, file);
