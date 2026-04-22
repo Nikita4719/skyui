@@ -32,6 +32,8 @@ import SolutionCard from "./pages/solution/solutioncard/SolutionCard";
 import SolutionCardForm from "./pages/solution/solutioncard/SolutionCardForm";
 import SolutionCards from "./pages/solution/solutioncards/SolutionCards";
 import SolutionCardsForm from "./pages/solution/solutioncards/SolutionCardsForm";
+import SolutionTableIcons from "./pages/solution/solutionTableIcons/SolutionTableIcons";
+import SolutionTableIconsForm from "./pages/solution/solutionTableIcons/SolutionTableIconsForm";
 
 
 //CMS ROUTES
@@ -177,6 +179,22 @@ export const routes = [
         path: "/solution/solution-cards/edit/:id",
         element: <SolutionCardsForm />,
       },
+
+      //SOLUTION TABLE ICONS
+        {
+        name: "solution category",
+        path: "/solution/solution-table-icons",
+        element: <SolutionTableIcons />,
+      },
+      {
+        path: "/solution/solution-table-icons/add",
+        element: <SolutionTableIconsForm />,
+      },
+      {
+        path: "/solution/solution-table-icons/edit/:id",
+        element: <SolutionTableIconsForm />,
+      },
+
 
       //SOLUTION CAT
       {

@@ -130,6 +130,12 @@ export function Sidenav() {
           </Button>
         </NavLink>
 
+          <NavLink to="/dashboard/solution/solution-table-icons">
+          <Button variant="text" className="flex justify-start pl-12 mb-1 normal-case" fullWidth>
+            Solution Table Icons
+          </Button>
+        </NavLink>
+
         <NavLink to="/dashboard/solution/solution-images">
           <Button variant="text" className="flex justify-start pl-12 mb-1 normal-case" fullWidth>
             Solution Image
