@@ -49,7 +49,7 @@ export default function SolutionSubCat() {
   const truncateText = (text, maxLength = 120) => {
     if (!text) return "";
 
-    const cleanText = stripHtml(text); 
+    const cleanText = stripHtml(text);
 
     return cleanText.length > maxLength
       ? cleanText.substring(0, maxLength) + "..."
@@ -58,25 +58,25 @@ export default function SolutionSubCat() {
 
   return (
     <div className="mt-12 mb-8 px-6">
-     <CardHeader
-              variant="gradient"
-              color="gray"
-              className="flex justify-between items-center p-6"
-            >
-              <Typography variant="h6" color="white">
-                Solution Sub Categories
-              </Typography>
-    
-              <Button
-                size="sm"
-                color="white"
-                onClick={() =>
-                  navigate("/dashboard/solution/solution-sub-cat/add")
-                }
-              >
-                Add
-              </Button>
-            </CardHeader>
+      <CardHeader
+        variant="gradient"
+        color="gray"
+        className="flex justify-between items-center p-6"
+      >
+        <Typography variant="h6" color="white">
+          Solution Sub Categories
+        </Typography>
+
+        <Button
+          size="sm"
+          color="white"
+          onClick={() =>
+            navigate("/dashboard/solution/solution-sub-cat/add")
+          }
+        >
+          Add
+        </Button>
+      </CardHeader>
 
       <Card>
         <CardBody className="overflow-x-auto">
@@ -88,15 +88,29 @@ export default function SolutionSubCat() {
                 <th className="border border-blue-gray-200 px-3 py-2">Category</th>
                 <th className="border border-blue-gray-200 px-3 py-2">Heading</th>
                 <th className="border border-blue-gray-200 px-3 py-2">Image1</th>
+                 <th className="border border-blue-gray-200 px-3 py-2">
+                  Image1 Size
+                </th>
                 <th className="border border-blue-gray-200 px-3 py-2">Image Chart</th>
+                 <th className="border border-blue-gray-200 px-3 py-2">
+                  Image Chart Size
+                </th>
                 <th className="border border-blue-gray-200 px-3 py-2">Description1</th>
                 <th className="border border-blue-gray-200 px-3 py-2">Description2</th>
-                <th className="border border-blue-gray-200 px-3 py-2">Para1</th>
-                <th className="border border-blue-gray-200 px-3 py-2">Para2</th>
-                <th className="border border-blue-gray-200 px-3 py-2">Para3</th>
-                <th className="border border-blue-gray-200 px-3 py-2">Para4</th>
+                <th className="border border-blue-gray-200 px-3 py-2">Table</th>
+                {/* <th className="border border-blue-gray-200 px-3 py-2">Para2</th> */}
+                {/* <th className="border border-blue-gray-200 px-3 py-2">Para3</th> */}
+                {/* <th className="border border-blue-gray-200 px-3 py-2">Para4</th> */}
                 <th className="border border-blue-gray-200 px-3 py-2">Image2</th>
+                  <th className="border border-blue-gray-200 px-3 py-2">
+                  Multiple Image Size
+                </th>
                 <th className="border border-blue-gray-200 px-3 py-2">Action</th>
+               
+
+               
+
+              
               </tr>
             </thead>
 
@@ -122,7 +136,7 @@ export default function SolutionSubCat() {
                     </td>
 
                     <td className="border border-blue-gray-200 p-3 font-semibold">
-                      {truncateText (item.solution_cat?.title || "No Category")}
+                      {truncateText(item.solution_cat?.title || "No Category")}
                     </td>
 
                     <td className="border border-blue-gray-200 p-3">
@@ -140,6 +154,9 @@ export default function SolutionSubCat() {
                         "No Image"
                       )}
                     </td>
+                    <td className="border border-blue-gray-200 p-3">
+                      {item.image1Size || "N/A"}
+                    </td>
 
                     <td className="border border-blue-gray-200 p-3">
                       {item.imagechart ? (
@@ -151,6 +168,10 @@ export default function SolutionSubCat() {
                       ) : (
                         "No Image"
                       )}
+                    </td>
+
+                    <td className="border border-blue-gray-200 p-3">
+                      {item.imageChartSize || "N/A"}
                     </td>
 
                     <td className="border border-blue-gray-200 p-3 max-w-xs">
@@ -165,7 +186,7 @@ export default function SolutionSubCat() {
                       {truncateText(item.para1)}
                     </td>
 
-                    <td className="border border-blue-gray-200 p-3 max-w-xs">
+                    {/* <td className="border border-blue-gray-200 p-3 max-w-xs">
                       {truncateText(item.para2)}
                     </td>
 
@@ -175,21 +196,25 @@ export default function SolutionSubCat() {
 
                     <td className="border border-blue-gray-200 p-3 max-w-xs">
                       {truncateText(item.para4)}
-                    </td>
+                    </td> */}
 
                     <td className="border border-blue-gray-200 p-3">
                       <div className="flex gap-2 flex-wrap">
                         {images.length > 0
                           ? images.map((img, i) => (
-                              <img
-                                key={i}
-                                src={`${BASE_URL}/${img}`}
-                                className="h-12 rounded"
-                                alt="multi"
-                              />
-                            ))
+                            <img
+                              key={i}
+                              src={`${BASE_URL}/${img}`}
+                              className="h-12 rounded"
+                              alt="multi"
+                            />
+                          ))
                           : "No Image"}
                       </div>
+                    </td>
+
+                    <td className="border border-blue-gray-200 p-3">
+                      {item.image2Size || "N/A"}
                     </td>
 
                     <td className="border border-blue-gray-200 p-3 space-x-2">
@@ -234,3 +259,5 @@ export default function SolutionSubCat() {
     </div>
   );
 }
+
+

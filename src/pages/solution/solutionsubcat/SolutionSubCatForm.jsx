@@ -29,9 +29,12 @@ export default function SolutionSubCatForm() {
     image1: "",
     imagechart: "",
     para1: "",
-    para2: "",
-    para3: "",
-    para4: "",
+    // para2: "",
+    // para3: "",
+    // para4: "",
+    image1Size: "",
+    imageChartSize: "",
+    image2Size: "",
     image2: [],
   });
 
@@ -191,7 +194,7 @@ export default function SolutionSubCatForm() {
             height={300}
           />
 
-          <Typography>Para 2</Typography>
+          {/* <Typography>Para 2</Typography>
           <Editor
             value={formData.para2}
             onChange={(val) => handleEditorChange("para2", val)}
@@ -210,10 +213,22 @@ export default function SolutionSubCatForm() {
             value={formData.para4}
             onChange={(val) => handleEditorChange("para4", val)}
             height={300}
-          />
+          /> */}
           {/* IMAGE1 */}
           <Typography>Upload Image1</Typography>
           <input type="file" onChange={handleImage1} />
+          <input
+            type="text"
+            placeholder="Enter Image1 Size"
+            className="border p-2 w-full mt-2"
+            value={formData.image1Size}
+            onChange={(e) =>
+              setFormData((prev) => ({
+                ...prev,
+                image1Size: e.target.value,
+              }))
+            }
+          />
           {previewImage1 && (
             <div className="relative inline-block">
               <img src={previewImage1} className="h-20 mt-2 rounded" />
@@ -232,6 +247,18 @@ export default function SolutionSubCatForm() {
           {/* IMAGE CHART */}
           <Typography>Upload Image Chart</Typography>
           <input type="file" onChange={handleImageChart} />
+          <input
+            type="text"
+            placeholder="Enter Image Chart Size"
+            className="border p-2 w-full mt-2"
+            value={formData.imageChartSize}
+            onChange={(e) =>
+              setFormData((prev) => ({
+                ...prev,
+                imageChartSize: e.target.value,
+              }))
+            }
+          />
           {previewChart && (
             <div className="relative inline-block">
               <img src={previewChart} className="h-20 mt-2 rounded" />
@@ -250,7 +277,18 @@ export default function SolutionSubCatForm() {
           {/* MULTIPLE IMAGES */}
           <Typography>Upload Multiple Images</Typography>
           <input type="file" multiple onChange={handleImage2} />
-
+          <input
+            type="text"
+            placeholder="Enter Multiple Image Size"
+            className="border p-2 w-full mt-2"
+            value={formData.image2Size}
+            onChange={(e) =>
+              setFormData((prev) => ({
+                ...prev,
+                image2Size: e.target.value,
+              }))
+            }
+          />
           <div className="flex gap-2 flex-wrap mt-2">
             {previewImages.map((img, index) => (
               <div key={index} className="relative">
